@@ -16,7 +16,8 @@ public class DomoticzApiClient {
     private HashMap<Integer, Switch> switches;
     private HashMap<String, Integer> nameToIdx;
 
-    public DomoticzApiClient() {
+    public DomoticzApiClient(String configPath) {
+        Config.init(configPath);
         deviceControlApi = new DeviceControlApi();
         infoApi = new InfoApi();
         update();
