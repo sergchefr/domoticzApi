@@ -32,8 +32,8 @@ public class Config {
         }
 
         if(data.containsKey("login")&&data.containsKey("password")){
-            login = "java";
-            password = "aC5981757";
+            login = data.get("login");
+            password = data.get("password");
         }else{
             throw new RuntimeException("Config must have login and password parameter");
         }
