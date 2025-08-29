@@ -7,6 +7,7 @@ import ru.ifmo.domoticz.instances.Switch;
 import ru.ifmo.domoticz.pojo.PojoDevice;
 import ru.ifmo.domoticz.pojo.PojoSwitch;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class DomoticzApiClient {
@@ -15,8 +16,9 @@ public class DomoticzApiClient {
     private HashMap<Integer, Device> devices;
     private HashMap<Integer, Switch> switches;
     private HashMap<String, Integer> nameToIdx;
+    private static volatile DomoticzApiClient instance;
 
-    public DomoticzApiClient(String configPath) {
+    private DomoticzApiClient(String configPath) {
         Config.init(configPath);
         deviceControlApi = new DeviceControlApi();
         infoApi = new InfoApi();
@@ -49,8 +51,15 @@ public class DomoticzApiClient {
         return devices.get(idx);
     }
 
+    public Device[] getAllDevices(){
+        return devices.values().toArray(new Device[0]);
+    }
     public Switch getSwitch(int idx){
         return switches.get(idx);
+    }
+
+    public Switch[] getAllSwitches(){
+        return switches.values().toArray(new Switch[0]);
     }
 
     public Switch getSwitch(String name){
@@ -65,5 +74,16 @@ public class DomoticzApiClient {
 
     public InfoApi getInfoApi(){
         return infoApi;
+    }
+
+    public static DomoticzApiClient getInstance() {
+        if(instance==null){
+            synchronized (DomoticzApiClient.class){
+                if(instance==null){
+                    instance = new DomoticzApiClient("src/main/resources/config.txt");
+                }
+            }
+        }
+        return instance;
     }
 }

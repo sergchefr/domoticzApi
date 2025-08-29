@@ -6,7 +6,10 @@ import ru.ifmo.domoticz.pojo.PojoDevice;
 
 public class Main {
     public static void main(String[] args) {
-        DomoticzApiClient client = new DomoticzApiClient("src/main/resources/config.txt");
-        System.out.println(client.getInfoApi().getDevice(58).getName());
+        //DomoticzApiClient client = new DomoticzApiClient("src/main/resources/config.txt");
+        //System.out.println(client.getInfoApi().getDevice(1).getFavorite());
+
+
+
     }
 }
