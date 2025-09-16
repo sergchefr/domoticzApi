@@ -2,6 +2,7 @@ package ru.ifmo.domoticz;
 
 import ru.ifmo.domoticz.apis.DeviceControlApi;
 import ru.ifmo.domoticz.apis.InfoApi;
+import ru.ifmo.domoticz.apis.ScriptApi;
 import ru.ifmo.domoticz.instances.Device;
 import ru.ifmo.domoticz.instances.Switch;
 import ru.ifmo.domoticz.pojo.PojoDevice;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 public class DomoticzApiClient {
     private DeviceControlApi deviceControlApi;
     private InfoApi infoApi;
+    private ScriptApi scriptApi;
     private HashMap<Integer, Device> devices;
     private HashMap<Integer, Switch> switches;
     private HashMap<String, Integer> nameToIdx;
@@ -22,6 +24,7 @@ public class DomoticzApiClient {
         Config.init(configPath);
         deviceControlApi = new DeviceControlApi();
         infoApi = new InfoApi();
+        scriptApi = new ScriptApi();
         update();
     }
 
@@ -74,6 +77,10 @@ public class DomoticzApiClient {
 
     public InfoApi getInfoApi(){
         return infoApi;
+    }
+
+    public ScriptApi getScriptApi() {
+        return scriptApi;
     }
 
     public static DomoticzApiClient getInstance() {

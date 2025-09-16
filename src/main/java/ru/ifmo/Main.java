@@ -7,8 +7,7 @@ import ru.ifmo.domoticz.pojo.PojoDevice;
 public class Main {
     public static void main(String[] args) {
         DomoticzApiClient client = DomoticzApiClient.getInstance();
-        //System.out.println(client.getInfoApi().getDevice(1).getFavorite());
-        System.out.println(client.getDevice(43).getInfo().getType());
+        client.getScriptApi().enable(client.getScriptApi().getScript("28"));
 
 
     }

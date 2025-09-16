@@ -8,6 +8,7 @@
     <artifactId>domoticz_api</artifactId>
     <version>1.3</version>
 
+
     <dependencies>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
